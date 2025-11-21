@@ -70,7 +70,7 @@ export default function OurVision() {
                   fill
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/5" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-black/5" />
               </div>
               <div className="relative mt-auto flex flex-col gap-2 p-5 text-left text-white">
                 <h3 className="text-base font-semibold tracking-tight sm:text-lg">
@@ -79,7 +79,7 @@ export default function OurVision() {
                 <p className="line-clamp-3 text-xs leading-relaxed text-zinc-100/90 sm:text-sm">
                   {item.description}
                 </p>
-                <span className="mt-2 inline-flex text-[11px] font-semibold uppercase tracking-wide text-orange-300 border-b-2 border-transparent pb-[1px] transition-colors duration-200 group-hover:text-orange-400 group-hover:border-orange-400">
+                <span className="mt-2 inline-flex text-[11px] font-semibold uppercase tracking-wide text-orange-300 border-b-2 border-transparent pb-px transition-colors duration-200 group-hover:text-orange-400 group-hover:border-orange-400">
                   View More
                 </span>
               </div>

@@ -50,7 +50,7 @@ export default function OurGallery() {
                 fill
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
           ))}
         </div>
