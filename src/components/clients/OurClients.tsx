@@ -5,7 +5,7 @@ import Image from "next/image";
 const clients = [
   { name: "Mitra10", logo: "/img/mitra10.webp" },
   { name: "Depo Bangunan", logo: "/img/depobangunan.webp" },
-  { name: "ACE Hardware Indonesia", logo: "/img/acehardware.webp" },
+  { name: "ACE Hardware Indonesia", logo: "/img/acehardware1.webp" },
   { name: "Ciputra Group", logo: "/img/ciputragroup1.webp" },
   { name: "Summarecon", logo: "/img/summarecongroup.webp" },
   { name: "Adhi Karya", logo: "/img/adhikarya.webp" },
@@ -29,7 +29,7 @@ export default function OurClients() {
           <p className="mt-4 text-sm leading-relaxed text-zinc-700 sm:text-base">
             Deretan brand dan perusahaan yang menjadi referensi klien kami di sektor material,
             konstruksi, dan interior. Logo berikut digunakan sebagai ilustrasi untuk menunjukkan
-            kedekatan Le Iyan dengan dunia proyek di Indonesia.
+            kedekatan Abufa Plywood dengan dunia proyek di Indonesia.
           </p>
         </div>
 

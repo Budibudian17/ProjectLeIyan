@@ -11,19 +11,19 @@ export default function Footer() {
           <div className="max-w-sm space-y-5">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-orange-600 text-base font-bold text-white md:h-12 md:w-12 md:text-lg">
-                LY
+                AP
               </div>
               <div>
-                <p className="text-lg font-semibold tracking-wide text-white md:text-xl">Le Iyan</p>
+                <p className="text-lg font-semibold tracking-wide text-white md:text-xl">Abufa Plywood</p>
                 <p className="text-[11px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
-                  Building Materials
+                  Plywood &amp; Panels
                 </p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-zinc-400">
-              Le Iyan adalah penyedia material kayu dan panel lembaran di Depok, menghadirkan plywood,
-              MDF, block melamin, partikel board, dan phenolic film untuk kebutuhan furniture dan
-              interior proyek.
+              Abufa Plywood adalah penyedia material kayu dan panel lembaran di Depok, menghadirkan
+              plywood, MDF, block melamin, partikel board, dan phenolic film untuk kebutuhan furniture
+              dan interior proyek.
             </p>
             <p className="text-sm font-semibold text-zinc-200">Jika tertarik, hubungi kami:</p>
             <div className="flex items-center gap-3 text-zinc-400">
@@ -104,7 +104,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-zinc-800 pt-4 text-xs text-zinc-500 sm:mt-10">
-          <p>© {new Date().getFullYear()} Le Iyan. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Abufa Plywood. All rights reserved.</p>
         </div>
       </div>
     </footer>

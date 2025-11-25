@@ -44,7 +44,7 @@ export default function ProductOverview() {
             Product Overview
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
-            Ringkasan produk best seller Le Iyan
+            Produk <b>BEST SELLER</b> Abufa Plywood
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-zinc-700 sm:text-base">
             Plywood dan MDF pilihan kami dirancang untuk memberikan kekuatan yang stabil, permukaan
@@ -58,7 +58,7 @@ export default function ProductOverview() {
           <div className="relative mx-auto flex h-72 w-full max-w-[800px] items-center justify-center translate-y-[-30px] sm:h-80 md:h-96">
             <Image
               src="/img/plywoodrmvbg2.webp"
-              alt="Produk best seller Le Iyan"
+              alt="Produk best seller Abufa Plywood"
               width={800}
               height={600}
               className="h-52 w-auto object-contain drop-shadow-md sm:h-60 md:h-96"

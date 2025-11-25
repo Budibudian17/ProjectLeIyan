@@ -6,9 +6,9 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   {
     id: 1,
-    question: "Apa saja material utama yang dijual Le Iyan?",
+    question: "Apa saja material utama yang dijual Abufa Plywood?",
     answer:
-      "Le Iyan fokus pada material panel seperti plywood, MDF, block melamin, partikel board, dan phenolic film yang cocok untuk furniture, interior rumah, hingga kebutuhan proyek komersial.",
+      "Abufa Plywood fokus pada material panel seperti plywood, MDF, block melamin, partikel board, dan phenolic film yang cocok untuk furniture, interior rumah, hingga kebutuhan proyek komersial.",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     id: 3,
-    question: "Area mana saja yang bisa dikirim oleh Le Iyan?",
+    question: "Area mana saja yang bisa dikirim oleh Abufa Plywood?",
     answer:
       "Saat ini kami fokus melayani pengiriman ke area Depok dan sekitarnya. Untuk pengiriman di luar area tersebut, bisa didiskusikan terlebih dahulu dengan tim kami.",
   },
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     id: 6,
-    question: "Apakah Le Iyan menerima konsultasi pemilihan material?",
+    question: "Apakah Abufa Plywood menerima konsultasi pemilihan material?",
     answer:
       "Ya, kami bisa bantu rekomendasikan jenis panel yang cocok untuk kebutuhan Anda, misalnya untuk kitchen set, interior rumah, atau rak display toko.",
   },
@@ -59,7 +59,7 @@ export default function FaqSection() {
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-zinc-700 sm:text-base">
             Temukan jawaban seputar jenis material, pemakaian untuk proyek, hingga pengiriman ke area Depok
-            dan sekitarnya. Jika masih ada yang kurang jelas, tim Le Iyan siap membantu Anda.
+            dan sekitarnya. Jika masih ada yang kurang jelas, tim Abufa Plywood siap membantu Anda.
           </p>
         </div>
 

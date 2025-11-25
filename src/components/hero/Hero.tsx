@@ -7,10 +7,10 @@ const slides = [
   {
     id: 0,
     image: "/img/hero1.webp",
-    title: "Bangun Rumah Impian dengan Bata Berkualitas",
+    title: "Material untuk proyek yang rapi dan presisi",
     description:
-      "Le Iyan menyediakan material bata berkualitas untuk hunian yang kokoh, rapi, dan tahan lama.",
-    cta: "Lihat Koleksi Bata",
+      "Abufa Plywood menyediakan plywood dan panel berkualitas untuk hunian dan proyek komersial yang kokoh, rapi, dan tahan lama.",
+    cta: "Lihat Koleksi Plywood",
   },
   {
     id: 1,

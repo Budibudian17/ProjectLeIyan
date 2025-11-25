@@ -53,7 +53,7 @@ export default function AboutSection() {
             <div className="relative h-40 flex-1 overflow-hidden rounded-xl bg-zinc-200 sm:h-52 md:h-60">
               <Image
                 src="/img/aboutuss1.webp"
-                alt="Gudang material Le Iyan"
+                alt="Gudang material Abufa Plywood"
                 fill
                 className="h-full w-full object-cover"
               />
@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="relative hidden h-40 flex-1 overflow-hidden rounded-xl bg-zinc-200 sm:block sm:h-52 md:h-60">
               <Image
                 src="/img/aboutuss2.webp"
-                alt="Material bangunan Le Iyan"
+                alt="Material plywood dan panel Abufa Plywood"
                 fill
                 className="h-full w-full object-cover"
               />
@@ -92,10 +92,10 @@ export default function AboutSection() {
             About Us
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
-            Le Iyan, partner material bangunan untuk proyek Anda
+            Abufa Plywood, partner material kayu lembaran untuk proyek Anda
           </h2>
           <p className="text-sm leading-relaxed text-zinc-600 sm:text-base">
-            Le Iyan adalah penyedia material kayu dan panel lembaran yang berlokasi di Depok,
+            Abufa Plywood adalah penyedia material kayu dan panel lembaran yang berlokasi di Depok,
             menghadirkan produk seperti plywood, MDF, block melamin, partikel board, dan phenolic
             film. Kami fokus pada kualitas, kerapihan, dan ketersediaan stok untuk mendukung
             kebutuhan tukang, kontraktor, maupun pemilik rumah.

@@ -44,7 +44,7 @@ export default function OurVision() {
             Menginspirasi proyek yang rapi dan fungsional
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-zinc-700 sm:text-base">
-            Kami membayangkan setiap lembar plywood, MDF, dan panel lainnya di Le Iyan menjadi bagian
+            Kami membayangkan setiap lembar plywood, MDF, dan panel lainnya di Abufa Plywood menjadi bagian
             dari ruang yang lebih tertata, nyaman, dan memudahkan pekerjaan sehari-hari, baik untuk tukang
             maupun pemilik rumah.
           </p>

@@ -1,23 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
-const galleryImages = [
-  "/img/doc1.webp",
-  "/img/doc2.webp",
-  "/img/doc3.webp",
-  "/img/doc4.webp",
-  "/img/doc5.webp",
-  "/img/doc6.webp",
-  "/img/doc7.webp",
-  "/img/doc8.webp",
-];
+import type { GalleryItem } from "@/lib/gallery/data";
+import { getGalleryItems } from "@/lib/gallery/api";
 
 export default function OurGallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function load() {
+      try {
+        setIsLoading(true);
+        const data = await getGalleryItems();
+        if (!isCancelled) {
+          setItems(data);
+          setErrorMessage(null);
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          console.error("Failed to load gallery items for OurGallery", error);
+          setErrorMessage("Gagal memuat foto gallery. Silakan coba beberapa saat lagi.");
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    void load();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
 
   return (
     <section className="bg-zinc-50 py-12 sm:py-16 md:py-20">
@@ -28,31 +52,44 @@ export default function OurGallery() {
               Our Gallery
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
-              Dokumentasi proyek dan material Le Iyan
+              Dokumentasi proyek dan material Abufa Plywood
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-zinc-700 sm:text-base">
               Beberapa cuplikan dokumentasi dari gudang, material, dan proyek yang menggunakan
-              produk panel dan kayu dari Le Iyan.
+              produk panel dan kayu dari Abufa Plywood.
             </p>
           </div>
         </div>
 
+        {errorMessage && (
+          <div className="mx-auto mb-4 max-w-md rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {errorMessage}
+          </div>
+        )}
+
         <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {galleryImages.map((src, index) => (
-            <div
-              key={src}
-              className="group relative h-40 cursor-pointer overflow-hidden rounded-xl bg-zinc-200 sm:h-44 md:h-48"
-              onClick={() => setSelectedImage(src)}
-            >
-              <Image
-                src={src}
-                alt={`Dokumentasi Le Iyan ${index + 1}`}
-                fill
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-          ))}
+          {isLoading
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-40 animate-pulse rounded-xl bg-zinc-200 sm:h-44 md:h-48"
+                />
+              ))
+            : items.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="group relative h-40 cursor-pointer overflow-hidden rounded-xl bg-zinc-200 sm:h-44 md:h-48"
+                  onClick={() => setSelectedImage(item.src)}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt || `Dokumentasi Abufa Plywood ${index + 1}`}
+                    fill
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+              ))}
         </div>
 
         <div className="mt-10 flex justify-center">
@@ -82,7 +119,7 @@ export default function OurGallery() {
             <div className="relative h-[80vh] w-full overflow-hidden rounded-2xl bg-black">
               <Image
                 src={selectedImage}
-                alt="Preview dokumentasi Le Iyan"
+                alt="Preview dokumentasi Abufa Plywood"
                 fill
                 className="h-full w-full object-cover"
               />

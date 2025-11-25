@@ -166,6 +166,28 @@
   animation: badge-pulse 2.8s ease-in-out infinite;
 }
 
+@keyframes saw-cut {
+  0% {
+    transform: translateX(0) rotate(-4deg);
+  }
+  25% {
+    transform: translateX(-4px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(4px) rotate(4deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) rotate(-4deg);
+  }
+}
+
+.animate-saw-cut {
+  animation: saw-cut 0.7s ease-in-out infinite;
+}
+
 /* Custom scrollbar (WebKit browsers) */
 *::-webkit-scrollbar {
   width: 10px;
