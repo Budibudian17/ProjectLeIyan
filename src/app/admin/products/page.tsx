@@ -236,7 +236,7 @@ export default function AdminProductsPage() {
           <span>
             {isLoading
               ? "Memuat data produk dari database..."
-              : `${items.length} produk terdaftar (disimpan di Firebase)`}
+              : `${items.length} produk terdaftar`}
           </span>
         </div>
 

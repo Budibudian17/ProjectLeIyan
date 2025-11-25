@@ -21,6 +21,15 @@ export default function MainNavbar() {
 
   async function handleContactClick() {
     void incrementStat("contactClicks");
+
+    if (typeof window !== "undefined") {
+      const phone = "6285353715617";
+      const text =
+        "Halo, saya tertarik dengan produk Abufa Plywood dan ingin berkonsultasi / memesan.";
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+      window.open(url, "_blank");
+    }
   }
 
   useEffect(() => {

@@ -187,7 +187,7 @@ export default function AdminGalleryPage() {
           <span>
             {isLoading
               ? "Memuat data gallery dari database..."
-              : `${items.length} foto terdaftar (disimpan di Firebase)`}
+              : `${items.length} foto terdaftar`}
           </span>
         </div>
 

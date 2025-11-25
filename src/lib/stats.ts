@@ -9,6 +9,13 @@ export type StatFieldKey =
 
 export async function incrementStat(field: StatFieldKey): Promise<void> {
   try {
+    if (typeof window !== "undefined") {
+      const role = window.sessionStorage.getItem("abufa_role");
+      if (role === "admin") {
+        return;
+      }
+    }
+
     const globalRef = doc(db, "stats", "global");
 
     const now = new Date();

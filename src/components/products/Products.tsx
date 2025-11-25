@@ -10,6 +10,8 @@ import { getProducts } from "@/lib/products/api";
 export default function ProductsSection() {
   const [items, setItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalImages, setTotalImages] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -18,10 +20,21 @@ export default function ProductsSection() {
     async function load() {
       try {
         setIsLoading(true);
+        setImagesLoaded(0);
+        setTotalImages(0);
         const data = await getProducts();
         if (!isCancelled) {
           setItems(data);
           setErrorMessage(null);
+
+          const hasMany = data.length > 4;
+          const visible = hasMany ? data : data.slice(0, 4);
+          const count = visible.length;
+          setTotalImages(count);
+
+          if (count === 0) {
+            setIsLoading(false);
+          }
         }
       } catch (error) {
         if (!isCancelled) {
@@ -30,7 +43,7 @@ export default function ProductsSection() {
         }
       } finally {
         if (!isCancelled) {
-          setIsLoading(false);
+          // isLoading akan dimatikan oleh handler gambar
         }
       }
     }
@@ -41,6 +54,16 @@ export default function ProductsSection() {
       isCancelled = true;
     };
   }, []);
+
+  const handleImageLoaded = () => {
+    setImagesLoaded((prev) => {
+      const next = prev + 1;
+      if (next >= totalImages && totalImages > 0) {
+        setIsLoading(false);
+      }
+      return next;
+    });
+  };
 
   const hasManyProducts = items.length > 4;
   const visibleProducts = hasManyProducts ? items : items.slice(0, 4);
@@ -102,6 +125,7 @@ export default function ProductsSection() {
                         width={260}
                         height={176}
                         className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                        onLoadingComplete={handleImageLoaded}
                       />
                     </div>
                     <h3 className="mt-6 text-base font-semibold tracking-tight text-zinc-900 sm:text-lg">

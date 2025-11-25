@@ -130,6 +130,19 @@ export default function ProductDetailPage() {
 
   async function handleContactClick() {
     void incrementStat("contactClicks");
+
+    if (typeof window !== "undefined" && effectiveProduct) {
+      const phone = "6285353715617";
+      const currentUrl = window.location.href;
+      const imageUrl = new URL(effectiveProduct.image, window.location.origin).toString();
+      const text =
+        `Halo, saya ingin bertanya apakah produk "${effectiveProduct.name}" ini masih tersedia?` +
+        `\n\nLink produk: ${currentUrl}` +
+        (imageUrl ? `\nGambar produk: ${imageUrl}` : "");
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+      window.open(url, "_blank");
+    }
   }
 
   return (
