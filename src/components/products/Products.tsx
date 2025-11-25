@@ -55,6 +55,19 @@ export default function ProductsSection() {
     };
   }, []);
 
+  // Fallback: kalau karena alasan tertentu event onLoadingComplete tidak terpanggil
+  // (misal error gambar di production), jangan biarkan loading selamanya.
+  useEffect(() => {
+    if (!isLoading) return;
+    if (totalImages === 0) return;
+
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [isLoading, totalImages]);
+
   const handleImageLoaded = () => {
     setImagesLoaded((prev) => {
       const next = prev + 1;
