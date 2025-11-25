@@ -36,6 +36,9 @@ export default function OurGallery({ onReady }: OurGalleryProps) {
       } finally {
         if (!isCancelled) {
           setIsLoading(false);
+          if (onReady) {
+            onReady();
+          }
         }
       }
     }

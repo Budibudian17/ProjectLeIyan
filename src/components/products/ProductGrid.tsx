@@ -36,6 +36,9 @@ export default function ProductGrid({ onReady }: ProductGridProps) {
       } finally {
         if (!isCancelled) {
           setIsLoading(false);
+          if (onReady) {
+            onReady();
+          }
         }
       }
     }
