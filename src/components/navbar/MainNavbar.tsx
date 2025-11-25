@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MessageCircle, Menu, X } from "lucide-react";
@@ -50,8 +51,15 @@ export default function MainNavbar() {
       <header className={headerClasses}>
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:gap-8 md:py-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-orange-600 text-base font-bold text-white md:h-12 md:w-12 md:text-lg">
-            AP
+          <div className="relative h-11 w-11 overflow-hidden rounded-sm bg-white md:h-12 md:w-12">
+            <Image
+              src="/img/logo.webp"
+              alt="Abufa Plywood logo"
+              fill
+              sizes="44px"
+              className="object-contain"
+              priority
+            />
           </div>
           <div className="leading-tight">
             <div className="text-lg font-semibold tracking-wide text-zinc-900 md:text-xl">

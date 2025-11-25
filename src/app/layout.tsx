@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: 'Abufa Plywood - Plywood & Panel Supplier Depok',
   description:
     'Abufa Plywood adalah penyedia plywood, MDF, block melamin, partikel board, dan phenolic film di Depok untuk kebutuhan furniture dan interior proyek.',
+  icons: {
+    icon: '/img/logo.webp',
+  },
 };
 
 export default function RootLayout({
