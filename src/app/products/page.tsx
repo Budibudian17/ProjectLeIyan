@@ -17,6 +17,16 @@ export default function ProductsPage() {
     void incrementStat("productPageViews");
   }, []);
 
+  useEffect(() => {
+    if (!isInitialLoading) return;
+
+    const timeout = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, [isInitialLoading]);
+
   return (
     <div>
       {isInitialLoading && (

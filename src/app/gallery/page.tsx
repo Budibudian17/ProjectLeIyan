@@ -15,6 +15,16 @@ export default function GalleryPage() {
     void incrementStat("galleryPageViews");
   }, []);
 
+  useEffect(() => {
+    if (!isInitialLoading) return;
+
+    const timeout = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, [isInitialLoading]);
+
   return (
     <main className="bg-zinc-50">
       {isInitialLoading && (
