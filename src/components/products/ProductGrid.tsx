@@ -5,7 +5,11 @@ import ProductCard from "./ProductCard";
 import type { Product } from "@/lib/products/data";
 import { getProducts } from "@/lib/products/api";
 
-export default function ProductGrid() {
+type ProductGridProps = {
+  onReady?: () => void;
+};
+
+export default function ProductGrid({ onReady }: ProductGridProps) {
   const [items, setItems] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +45,7 @@ export default function ProductGrid() {
     return () => {
       isCancelled = true;
     };
-  }, []);
+  }, [onReady]);
 
   const startIndex = (currentPage - 1) * pageSize;
   const visibleProducts = items.slice(startIndex, startIndex + pageSize);

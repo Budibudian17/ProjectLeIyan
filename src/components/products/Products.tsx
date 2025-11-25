@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import type { Product } from "@/lib/products/data";
 import { getProducts } from "@/lib/products/api";
 
-export default function ProductsSection() {
+type ProductsSectionProps = {
+  onReady?: () => void;
+};
+
+export default function ProductsSection({ onReady }: ProductsSectionProps) {
   const [items, setItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [totalImages, setTotalImages] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -20,21 +22,10 @@ export default function ProductsSection() {
     async function load() {
       try {
         setIsLoading(true);
-        setImagesLoaded(0);
-        setTotalImages(0);
         const data = await getProducts();
         if (!isCancelled) {
           setItems(data);
           setErrorMessage(null);
-
-          const hasMany = data.length > 4;
-          const visible = hasMany ? data : data.slice(0, 4);
-          const count = visible.length;
-          setTotalImages(count);
-
-          if (count === 0) {
-            setIsLoading(false);
-          }
         }
       } catch (error) {
         if (!isCancelled) {
@@ -43,7 +34,10 @@ export default function ProductsSection() {
         }
       } finally {
         if (!isCancelled) {
-          // isLoading akan dimatikan oleh handler gambar
+          setIsLoading(false);
+          if (onReady) {
+            onReady();
+          }
         }
       }
     }
@@ -53,31 +47,9 @@ export default function ProductsSection() {
     return () => {
       isCancelled = true;
     };
-  }, []);
+  }, [onReady]);
 
-  // Fallback: kalau karena alasan tertentu event onLoadingComplete tidak terpanggil
-  // (misal error gambar di production), jangan biarkan loading selamanya.
-  useEffect(() => {
-    if (!isLoading) return;
-    if (totalImages === 0) return;
-
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, [isLoading, totalImages]);
-
-  const handleImageLoaded = () => {
-    setImagesLoaded((prev) => {
-      const next = prev + 1;
-      if (next >= totalImages && totalImages > 0) {
-        setIsLoading(false);
-      }
-      return next;
-    });
-  };
-
+  const hasProducts = items.length > 0;
   const hasManyProducts = items.length > 4;
   const visibleProducts = hasManyProducts ? items : items.slice(0, 4);
 
@@ -118,7 +90,7 @@ export default function ProductsSection() {
               : "flex w-full flex-wrap justify-center gap-5 sm:gap-7"
           }
         >
-          {isLoading
+          {isLoading || !hasProducts
             ? Array.from({ length: 4 }).map((_, index) => (
                 <div
                   key={index}
@@ -138,7 +110,6 @@ export default function ProductsSection() {
                         width={260}
                         height={176}
                         className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                        onLoadingComplete={handleImageLoaded}
                       />
                     </div>
                     <h3 className="mt-6 text-base font-semibold tracking-tight text-zinc-900 sm:text-lg">

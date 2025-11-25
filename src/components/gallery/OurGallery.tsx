@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button";
 import type { GalleryItem } from "@/lib/gallery/data";
 import { getGalleryItems } from "@/lib/gallery/api";
 
-export default function OurGallery() {
+type OurGalleryProps = {
+  onReady?: () => void;
+};
+
+export default function OurGallery({ onReady }: OurGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +45,7 @@ export default function OurGallery() {
     return () => {
       isCancelled = true;
     };
-  }, []);
+  }, [onReady]);
 
   return (
     <section className="bg-zinc-50 py-12 sm:py-16 md:py-20">
