@@ -7,7 +7,7 @@ export default function AboutMissionVision() {
     <section className="bg-zinc-50 py-12 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600 sm:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942d2e] sm:text-sm">
             Mission & Vision
           </p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -24,7 +24,7 @@ export default function AboutMissionVision() {
           {/* Mission */}
           <div className="flex h-full flex-col rounded-2xl border border-orange-100 bg-white/80 p-6 shadow-sm backdrop-blur-sm sm:p-7">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-600">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-[#942d2e]">
                 <Target className="h-5 w-5" />
               </div>
               <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">Misi Kami</h3>

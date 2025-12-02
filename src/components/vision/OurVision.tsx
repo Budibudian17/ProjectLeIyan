@@ -37,7 +37,7 @@ export default function OurVision() {
     <section className="bg-white py-12 sm:py-16 md:py-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:flex-row md:items-end md:justify-between">
         <div className="max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             Our Vision
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -50,14 +50,14 @@ export default function OurVision() {
           </p>
         </div>
         <div className="md:text-right">
-          <Button className="bg-orange-600 px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base">
+          <Button className="bg-[#942d2e] px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base">
             View Inspirations
           </Button>
         </div>
       </div>
 
       <div className="mt-8 overflow-hidden pb-4">
-        <div className="flex w-max gap-5 sm:gap-7 animate-vision-marquee">
+        <div className="flex w-max gap-5 sm:gap-7 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden animate-vision-marquee">
           {marqueeVisionItems.map((item, index) => (
             <article
               key={`${item.title}-${index}`}

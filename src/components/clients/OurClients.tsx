@@ -20,7 +20,7 @@ export default function OurClients() {
     <section className="bg-white py-12 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             Our Valuable Clients
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -34,7 +34,7 @@ export default function OurClients() {
         </div>
 
         <div className="mt-8 overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50/60 px-4 py-5 shadow-sm sm:px-6 sm:py-6">
-          <div className="flex w-max items-center gap-6 animate-vision-marquee">
+          <div className="flex w-max items-center gap-6 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden animate-vision-marquee">
             {marqueeClients.map((client, index) => (
               <div
                 key={`${client.name}-${index}`}

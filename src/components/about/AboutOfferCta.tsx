@@ -15,7 +15,7 @@ export default function AboutOfferCta() {
         <div className="overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-sm sm:shadow-md">
           <div className="flex flex-col items-center gap-6 px-6 py-10 text-center sm:px-10 sm:py-12 md:flex-row md:items-center md:justify-between md:text-left">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600 sm:text-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942d2e] sm:text-sm">
                 Are You Interested in our Offer?
               </p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -31,7 +31,7 @@ export default function AboutOfferCta() {
             <div className="flex flex-col items-center gap-3 md:items-end">
               <Button
                 onClick={handleContactClick}
-                className="flex items-center gap-2 bg-orange-600 px-7 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base"
+                className="flex items-center gap-2 bg-[#942d2e] px-7 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>Contact Us via WhatsApp</span>

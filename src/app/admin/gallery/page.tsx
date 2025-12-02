@@ -201,9 +201,6 @@ export default function AdminGalleryPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
                   {formMode === "create" ? "Tambah Foto" : "Edit Foto"}
                 </p>
-                <p className="text-xs text-zinc-500">
-                  Perubahan hanya berlaku di halaman admin ini (data sumber tetap hardcode).
-                </p>
               </div>
             </div>
 

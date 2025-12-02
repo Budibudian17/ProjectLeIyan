@@ -50,14 +50,13 @@ export default function ProductsSection({ onReady }: ProductsSectionProps) {
   }, [onReady]);
 
   const hasProducts = items.length > 0;
-  const hasManyProducts = items.length > 4;
-  const visibleProducts = hasManyProducts ? items : items.slice(0, 4);
+  const marqueeProducts = hasProducts ? [...items, ...items] : [];
 
   return (
     <section className="bg-zinc-50 py-12 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             Our Products
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -69,7 +68,7 @@ export default function ProductsSection({ onReady }: ProductsSectionProps) {
             interior rumah, hingga proyek komersial di area Depok dan sekitarnya.
           </p>
           <div className="mt-6">
-            <Button className="bg-orange-600 px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base">
+            <Button className="bg-[#942d2e] px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base">
               View All Products
             </Button>
           </div>
@@ -83,13 +82,7 @@ export default function ProductsSection({ onReady }: ProductsSectionProps) {
           </div>
         )}
 
-        <div
-          className={
-            hasManyProducts
-              ? "flex w-max gap-5 sm:gap-7 animate-products-marquee"
-              : "flex w-full flex-wrap justify-center gap-5 sm:gap-7"
-          }
-        >
+        <div className="flex w-max gap-5 sm:gap-7 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden animate-products-marquee">
           {isLoading || !hasProducts
             ? Array.from({ length: 4 }).map((_, index) => (
                 <div
@@ -97,7 +90,7 @@ export default function ProductsSection({ onReady }: ProductsSectionProps) {
                   className="h-64 w-[260px] animate-pulse rounded-xl border border-zinc-200 bg-zinc-100 sm:w-[280px] md:w-[320px]"
                 />
               ))
-            : visibleProducts.map((product, index) => (
+            : marqueeProducts.map((product, index) => (
                 <article
                   key={`${product.id}-${index}`}
                   className="group flex w-[260px] shrink-0 flex-col justify-between rounded-xl border border-zinc-200 bg-white px-6 pb-7 pt-6 text-center shadow-sm transition-all duration-200 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md sm:w-[280px] md:w-[320px]"
@@ -115,13 +108,13 @@ export default function ProductsSection({ onReady }: ProductsSectionProps) {
                     <h3 className="mt-6 text-base font-semibold tracking-tight text-zinc-900 sm:text-lg">
                       {product.name}
                     </h3>
-                    <p className="mt-3 text-xs leading-relaxed text-zinc-600 sm:text-sm">
+                    <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-zinc-600 sm:text-sm">
                       {product.description}
                     </p>
                   </div>
                   <Link
                     href={`/products/${product.id}`}
-                    className="mt-5 inline-flex text-sm font-semibold text-orange-600 border-b-2 border-transparent pb-[2px] transition-colors duration-200 hover:text-orange-700 hover:border-orange-600"
+                    className="mt-5 inline-flex text-sm font-semibold text-[#942d2e] border-b-2 border-transparent pb-[2px] transition-colors duration-200 hover:text-[#942d2e] hover:border-[#942d2e]"
                   >
                     View Product
                   </Link>

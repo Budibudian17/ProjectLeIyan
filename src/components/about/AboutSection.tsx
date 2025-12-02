@@ -88,7 +88,7 @@ export default function AboutSection() {
 
         {/* Right: Text content */}
         <div className="flex flex-1 flex-col gap-4 md:gap-5">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             About Us
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -111,7 +111,7 @@ export default function AboutSection() {
             <li>• Konsultasi sederhana untuk bantu pilih material yang tepat</li>
           </ul>
           <div className="mt-4">
-            <Button className="bg-orange-600 px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base">
+            <Button className="bg-[#942d2e] px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base">
               More About Us
             </Button>
           </div>

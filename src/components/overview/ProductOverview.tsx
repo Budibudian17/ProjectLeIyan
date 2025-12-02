@@ -40,7 +40,7 @@ export default function ProductOverview() {
     <section className="bg-orange-50/60 py-12 sm:py-16 md:py-20">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-4">
         <div className="max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             Product Overview
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -119,7 +119,7 @@ function SpecItem({
       }`}
     >
       <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">{label}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#942d2e]">{label}</p>
         <p className="mt-1 text-sm">{value}</p>
       </div>
       <div className="h-px w-10 bg-zinc-500" />

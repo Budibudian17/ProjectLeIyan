@@ -65,7 +65,7 @@ export default function MainNavbar() {
             <div className="text-lg font-semibold tracking-wide text-zinc-900 md:text-xl">
               Abufa Plywood
             </div>
-            <div className="text-[11px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
+            <div className="text-[11px] uppercase tracking-[0.3em] text-[#942d2e] font-semibold md:text-xs">
               Plywood &amp; Panels
             </div>
           </div>
@@ -82,8 +82,8 @@ export default function MainNavbar() {
                 href={link.href}
                 className={`border-b-2 pb-1 transition-colors duration-200 ${
                   isActive
-                    ? "border-orange-600 text-orange-600"
-                    : "border-transparent hover:border-orange-600 hover:text-orange-600"
+                    ? "border-[#942d2e] text-[#942d2e]"
+                    : "border-transparent hover:border-[#942d2e] hover:text-[#942d2e]"
                 }`}
               >
                 {link.label}
@@ -97,7 +97,7 @@ export default function MainNavbar() {
           <div className="hidden md:block">
             <Button
               onClick={handleContactClick}
-              className="flex items-center gap-2 bg-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base"
+              className="flex items-center gap-2 bg-[#942d2e] px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base"
             >
               <MessageCircle className="h-4 w-4" />
               <span>Contact Us</span>

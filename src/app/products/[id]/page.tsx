@@ -194,7 +194,7 @@ export default function ProductDetailPage() {
           {/* Right: info */}
           <div className="flex flex-col justify-center gap-5">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600 sm:text-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e] sm:text-sm">
                 {effectiveProduct?.category ?? "Product"}
               </p>
               <h1 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -235,7 +235,7 @@ export default function ProductDetailPage() {
 
             <div>
               <p className="text-sm text-zinc-500">Perkiraan harga mulai dari</p>
-              <p className="mt-1 text-3xl font-semibold tracking-tight text-orange-600 sm:text-4xl">
+              <p className="mt-1 text-3xl font-semibold tracking-tight text-[#942c2e] sm:text-4xl">
                 {effectiveProduct ? formatPrice(effectiveProduct.price) : "-"}
               </p>
             </div>
@@ -243,7 +243,7 @@ export default function ProductDetailPage() {
             <div>
               <Button
                 onClick={handleContactClick}
-                className="flex items-center gap-2 bg-orange-600 px-7 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0"
+                className="flex items-center gap-2 bg-[#942c2e] px-7 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942c2e] hover:shadow-lg active:translate-y-0"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>Contact Us</span>
@@ -292,7 +292,7 @@ export default function ProductDetailPage() {
         <section className="mt-10 grid gap-10 border-t border-zinc-200 pt-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)]">
           {/* Deskripsi */}
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e]">
               Deskripsi
             </p>
             <h2 className="text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl">
@@ -308,7 +308,7 @@ export default function ProductDetailPage() {
           {/* Spesifikasi & Karakteristik */}
           <div className="space-y-7">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e]">
                 Spesifikasi Utama
               </p>
               <dl className="mt-3 space-y-2 text-sm text-zinc-700 sm:text-base">
@@ -329,7 +329,7 @@ export default function ProductDetailPage() {
           <div className="flex flex-col gap-10 md:flex-row">
             {/* Existing reviews */}
             <div className="md:w-1/2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e]">
                 Reviews
               </p>
               <h2 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl">
@@ -337,7 +337,7 @@ export default function ProductDetailPage() {
               </h2>
 
               <div className="mt-4 flex items-center gap-3 text-sm text-zinc-700">
-                <div className="flex items-center gap-1 text-orange-500">
+                <div className="flex items-center gap-1 text-[#942c2e]">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <Star
                       key={index}
@@ -410,7 +410,7 @@ export default function ProductDetailPage() {
 
             {/* Write a review form */}
             <div className="md:w-1/2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e]">
                 Tulis Ulasan
               </p>
               <h2 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl">
@@ -557,7 +557,7 @@ export default function ProductDetailPage() {
                 <Button
                   type="submit"
                   disabled={isSubmittingReview}
-                  className="mt-1 bg-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="mt-1 bg-[#942c2e] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942c2e] hover:shadow-lg active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isSubmittingReview ? "Mengirim..." : "Kirim Ulasan"}
                 </Button>
@@ -570,7 +570,7 @@ export default function ProductDetailPage() {
         <section className="mt-12 border-t border-zinc-200 pt-10">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942c2e]">
                 Related Products
               </p>
               <h2 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl">
@@ -579,7 +579,7 @@ export default function ProductDetailPage() {
             </div>
             <Link
               href="/products"
-              className="hidden text-sm font-semibold text-orange-600 underline-offset-4 hover:underline sm:inline-flex"
+              className="hidden text-sm font-semibold text-[#942c2e] underline-offset-4 hover:underline sm:inline-flex"
             >
               Lihat semua produk
             </Link>

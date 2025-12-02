@@ -34,7 +34,7 @@ export default function ProductHowToOrder() {
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             HOW TO ORDER
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -54,11 +54,11 @@ export default function ProductHowToOrder() {
                 key={step.title}
                 className="flex h-full flex-col rounded-xl border border-zinc-200 bg-zinc-50/60 p-6 text-left shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-orange-300 hover:bg-white hover:shadow-md"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-600 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-[#942d2e] shadow-sm">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div className="mt-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
                     Langkah {index + 1}
                   </p>
                   <h3 className="mt-2 text-base font-semibold text-zinc-900 sm:text-lg">

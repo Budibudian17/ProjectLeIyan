@@ -74,7 +74,7 @@ export default function Hero() {
             </p>
           </div>
           <div className="mt-7 flex justify-center">
-            <Button className="bg-orange-600 px-8 py-5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base">
+            <Button className="bg-[#942d2e] px-8 py-5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base">
               {activeSlide.cta}
             </Button>
           </div>
@@ -87,7 +87,7 @@ export default function Hero() {
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 className={`h-2.5 rounded-full transition-all ${
-                  index === activeIndex ? "w-6 bg-orange-500" : "w-2.5 bg-white/60 hover:bg-white"
+                  index === activeIndex ? "w-6 bg-[#942d2e]" : "w-2.5 bg-white/60 hover:bg-white"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

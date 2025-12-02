@@ -36,6 +36,8 @@ export default function AdminProductsPage() {
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [imageInputMode, setImageInputMode] = useState<"url" | "file">("url");
   const [confirmState, setConfirmState] = useState<{
     open: boolean;
     message: string;
@@ -75,6 +77,7 @@ export default function AdminProductsPage() {
     setFormMode("create");
     setEditingId(null);
     setErrorMessage(null);
+    setImageInputMode("file");
     setFormValues({
       name: "",
       category: "",
@@ -90,6 +93,7 @@ export default function AdminProductsPage() {
     setFormMode("edit");
     setEditingId(product.id);
     setErrorMessage(null);
+    setImageInputMode("url");
     setFormValues({
       name: product.name,
       category: product.category,
@@ -250,10 +254,39 @@ export default function AdminProductsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
                   {formMode === "create" ? "Tambah Produk" : "Edit Produk"}
                 </p>
-                <p className="text-xs text-zinc-500">
-                  Perubahan hanya berlaku di halaman admin ini (data sumber tetap hardcode).
-                </p>
               </div>
+            </div>
+
+            {/* Image input mode toggle */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-zinc-500">
+              <span className="font-medium text-zinc-700">Gambar produk:</span>
+              <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 p-0.5 text-[11px]">
+                <button
+                  type="button"
+                  onClick={() => setImageInputMode("url")}
+                  className={`rounded-full px-2.5 py-1 transition-colors ${
+                    imageInputMode === "url"
+                      ? "bg-orange-600 text-white"
+                      : "text-zinc-700 hover:bg-white"
+                  }`}
+                >
+                  Pakai URL
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setImageInputMode("file")}
+                  className={`rounded-full px-2.5 py-1 transition-colors ${
+                    imageInputMode === "file"
+                      ? "bg-orange-600 text-white"
+                      : "text-zinc-700 hover:bg-white"
+                  }`}
+                >
+                  Upload File
+                </button>
+              </div>
+              <span className="text-[10px] text-zinc-400">
+                Pilih salah satu cara. Jika upload file, URL akan terisi otomatis.
+              </span>
             </div>
 
             <div className="space-y-1">
@@ -261,18 +294,38 @@ export default function AdminProductsPage() {
               <input
                 type="file"
                 accept="image/*"
+                disabled={imageInputMode !== "file"}
                 onChange={(event) => {
                   const file = event.target.files?.[0];
                   if (!file) return;
 
-                  const objectUrl = URL.createObjectURL(file);
-                  setFormValues((prev) => ({ ...prev, image: objectUrl }));
+                  void (async () => {
+                    try {
+                      setIsUploadingImage(true);
+                      const { uploadToCloudinary } = await import("@/lib/cloudinary/upload");
+                      const url = await uploadToCloudinary(file);
+                      setFormValues((prev) => ({ ...prev, image: url }));
+                      setErrorMessage(null);
+                    } catch (error) {
+                      console.error("Failed to upload image to Cloudinary", error);
+                      setErrorMessage("Gagal mengunggah gambar ke Cloudinary. Coba lagi.");
+                    } finally {
+                      setIsUploadingImage(false);
+                    }
+                  })();
                 }}
-                className="block w-full cursor-pointer rounded-md border border-dashed border-zinc-300 bg-zinc-50 px-3 py-2 text-xs text-zinc-600 file:mr-3 file:rounded-md file:border-0 file:bg-orange-600 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:border-orange-400"
+                className={`block w-full rounded-md border border-dashed border-zinc-300 bg-zinc-50 px-3 py-2 text-xs text-zinc-600 file:mr-3 file:rounded-md file:border-0 file:bg-orange-600 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:border-orange-400 ${
+                  imageInputMode !== "file" ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+                }`}
               />
               <p className="text-[11px] text-zinc-500">
-                Jika memilih file, gambar hanya tersimpan sementara di browser (demo, tidak di-upload ke server).
+                {imageInputMode === "file"
+                  ? "Jika memilih file, gambar akan di-upload ke Cloudinary dan URL-nya otomatis terisi di kolom URL gambar."
+                  : "Aktifkan mode Upload File jika ingin memilih file dari perangkat."}
               </p>
+              {isUploadingImage && (
+                <p className="text-[11px] text-orange-600">Sedang mengunggah gambar ke Cloudinary...</p>
+              )}
             </div>
 
             {errorMessage && (
@@ -330,11 +383,22 @@ export default function AdminProductsPage() {
                   onChange={(event) =>
                     setFormValues((prev) => ({ ...prev, image: event.target.value }))
                   }
-                  className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
-                  placeholder="/img/plywood.webp atau URL lain"
+                  readOnly={imageInputMode === "file"}
+                  className={`w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:ring-2 focus:ring-orange-200 ${
+                    imageInputMode === "file"
+                      ? "bg-zinc-100 text-zinc-500 focus:border-zinc-300"
+                      : "bg-white focus:border-orange-500"
+                  }`}
+                  placeholder={
+                    imageInputMode === "file"
+                      ? "URL akan terisi otomatis setelah upload gambar"
+                      : "/img/plywood.webp atau URL lain"
+                  }
                 />
                 <p className="text-[11px] text-zinc-500">
-                  Bisa isi URL gambar langsung, atau pilih file di bawah.
+                  {imageInputMode === "file"
+                    ? "URL ini berasal dari hasil upload ke Cloudinary."
+                    : "Isi URL gambar langsung (misalnya dari Cloudinary atau sumber lain)."}
                 </p>
               </div>
 
@@ -392,9 +456,18 @@ export default function AdminProductsPage() {
               </button>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-md bg-orange-600 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-orange-700"
+                disabled={isUploadingImage}
+                className={`inline-flex items-center justify-center rounded-md px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors ${
+                  isUploadingImage
+                    ? "cursor-not-allowed bg-orange-300"
+                    : "bg-orange-600 hover:bg-orange-700"
+                }`}
               >
-                {formMode === "create" ? "Simpan Produk" : "Simpan Perubahan"}
+                {isUploadingImage
+                  ? "Menunggu upload gambar..."
+                  : formMode === "create"
+                    ? "Simpan Produk"
+                    : "Simpan Perubahan"}
               </button>
             </div>
           </form>

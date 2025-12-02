@@ -101,7 +101,7 @@ export default function CustomerTestimonials() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
               What Our Customers Say
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -114,10 +114,10 @@ export default function CustomerTestimonials() {
           </div>
           <div className="mt-2 flex flex-col items-start gap-1 text-sm text-zinc-500 sm:mt-0 sm:items-end">
             <div className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4 text-orange-500" />
+              <MessageCircle className="h-4 w-4 text-[#942d2e]" />
               <span>Feedback mereka bantu kami jaga kualitas.</span>
             </div>
-            <div className="mt-1 rounded-full bg-orange-50 px-3 py-1 text-[11px] font-medium text-orange-700">
+            <div className="mt-1 rounded-full bg-orange-50 px-3 py-1 text-[11px] font-medium text-[#942d2e]">
               {isLoading && !errorMessage && <span>Memuat rating...</span>}
               {!isLoading && errorMessage && <span>{errorMessage}</span>}
               {!isLoading && !errorMessage && totalReviews > 0 && (
@@ -150,7 +150,7 @@ export default function CustomerTestimonials() {
             </div>
           ) : hasManyReviews ? (
             <div className="overflow-hidden">
-              <div className="flex w-max gap-5 sm:gap-6 animate-vision-marquee">
+              <div className="flex w-max gap-5 sm:gap-6 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden animate-vision-marquee">
                 {reviews.map((item) => {
                   const initials = item.name
                     .split(" ")

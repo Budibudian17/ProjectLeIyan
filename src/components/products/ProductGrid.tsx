@@ -57,7 +57,7 @@ export default function ProductGrid({ onReady }: ProductGridProps) {
     <section className="bg-zinc-50 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             PRODUCT CATALOG
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">

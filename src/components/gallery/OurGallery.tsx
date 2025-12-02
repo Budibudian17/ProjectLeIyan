@@ -55,7 +55,7 @@ export default function OurGallery({ onReady }: OurGalleryProps) {
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
               Our Gallery
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -101,7 +101,7 @@ export default function OurGallery({ onReady }: OurGalleryProps) {
 
         <div className="mt-10 flex justify-center">
           <Link href="/gallery">
-            <Button className="bg-orange-600 px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg active:translate-y-0 md:text-base">
+            <Button className="bg-[#942d2e] px-6 py-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#942d2e] hover:shadow-lg active:translate-y-0 md:text-base">
               View Gallery
             </Button>
           </Link>

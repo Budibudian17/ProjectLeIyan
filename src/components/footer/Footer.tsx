@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
@@ -10,9 +11,16 @@ export default function Footer() {
           {/* Left: Logo + description + socials */}
           <div className="max-w-sm space-y-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-orange-600 text-base font-bold text-white md:h-12 md:w-12 md:text-lg">
-                AP
-              </div>
+              <div className="relative h-11 w-11 overflow-hidden rounded-sm bg-white md:h-12 md:w-12">
+            <Image
+              src="/img/logo.webp"
+              alt="Abufa Plywood logo"
+              fill
+              sizes="44px"
+              className="object-contain"
+              priority
+            />
+          </div>
               <div>
                 <p className="text-lg font-semibold tracking-wide text-white md:text-xl">Abufa Plywood</p>
                 <p className="text-[11px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">

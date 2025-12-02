@@ -51,7 +51,7 @@ export default function FaqSection() {
     <section className="bg-zinc-50 py-12 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#942d2e]">
             Frequently Asked Questions
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -76,14 +76,14 @@ export default function FaqSection() {
                   onClick={() => setActiveId(item.id)}
                   className={`flex w-full items-center justify-between rounded-full border px-4 py-3 text-left text-sm font-medium transition-all duration-200 sm:px-5 sm:py-3.5 md:text-base ${
                     isActive
-                      ? "border-orange-500 bg-orange-50 text-orange-700 shadow-sm"
+                      ? "border-[#942d2e] bg-orange-50 text-[#942d2e] shadow-sm"
                       : "border-zinc-200 bg-white text-zinc-800 hover:border-orange-200 hover:bg-orange-50/40"
                   }`}
                 >
                   <span className="truncate pr-4">{item.question}</span>
                   <ChevronDown
                     className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
-                      isActive ? "rotate-180 text-orange-500" : "text-zinc-400"
+                      isActive ? "rotate-180 text-[#942d2e]" : "text-zinc-400"
                     }`}
                   />
                 </button>
@@ -93,7 +93,7 @@ export default function FaqSection() {
 
           {/* Right: active answer */}
           <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-7">
-            <p className="text-sm font-semibold text-orange-600">{activeFaq.question}</p>
+            <p className="text-sm font-semibold text-[#942d2e]">{activeFaq.question}</p>
             <p className="mt-3 text-sm leading-relaxed text-zinc-700 sm:text-base">
               {activeFaq.answer}
             </p>

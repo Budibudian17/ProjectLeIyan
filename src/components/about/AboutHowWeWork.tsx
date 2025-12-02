@@ -8,7 +8,7 @@ export default function AboutHowWeWork() {
       <div className="mx-auto max-w-6xl px-4">
         {/* Heading */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-600 sm:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#942d2e] sm:text-sm">
             How We Work
           </p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
@@ -26,7 +26,7 @@ export default function AboutHowWeWork() {
           {/* Row 1: Text left, image right */}
           <div className="grid items-center gap-6 md:grid-cols-2 md:gap-10">
             <div className="order-1 md:order-0">
-              <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
+              <h3 className="text-lg font-semibold text-[#942d2e] sm:text-xl">
                 Konsultasi kebutuhan & pemilihan material
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-base">
@@ -66,7 +66,7 @@ export default function AboutHowWeWork() {
             </div>
 
             <div className="order-2">
-              <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
+              <h3 className="text-lg font-semibold text-[#942d2e] sm:text-xl">
                 Pemotongan, pengecekan, dan pengiriman
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-base">
@@ -83,7 +83,7 @@ export default function AboutHowWeWork() {
           {/* Row 3: Text left, image right */}
           <div className="grid items-center gap-6 md:grid-cols-2 md:gap-10">
             <div className="order-1 md:order-0">
-              <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
+              <h3 className="text-lg font-semibold text-[#942d2e] sm:text-xl">
                 Penjadwalan dan koordinasi pengiriman
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-base">
@@ -123,7 +123,7 @@ export default function AboutHowWeWork() {
             </div>
 
             <div className="order-2">
-              <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
+              <h3 className="text-lg font-semibold text-[#942d2e] sm:text-xl">
                 Follow up dan kesiapan untuk kebutuhan berikutnya
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-base">
