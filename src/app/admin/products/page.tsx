@@ -20,6 +20,12 @@ const formatPrice = (price: number) => {
   }).format(price);
 };
 
+const formatPriceInput = (value: string) => {
+  const digits = value.replace(/[^0-9]/g, "");
+  if (!digits) return "";
+  return Number(digits).toLocaleString("id-ID");
+};
+
 export default function AdminProductsPage() {
   const [items, setItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +35,8 @@ export default function AdminProductsPage() {
     name: "",
     category: "",
     price: "",
+    priceMax: "",
+    priceMode: "fixed" as "fixed" | "range",
     image: "",
     size: "",
     thickness: "",
@@ -82,6 +90,8 @@ export default function AdminProductsPage() {
       name: "",
       category: "",
       price: "",
+      priceMax: "",
+      priceMode: "fixed",
       image: "",
       size: "",
       thickness: "",
@@ -93,11 +103,16 @@ export default function AdminProductsPage() {
     setFormMode("edit");
     setEditingId(product.id);
     setErrorMessage(null);
-    setImageInputMode("url");
+    setImageInputMode("file");
     setFormValues({
       name: product.name,
       category: product.category,
-      price: String(product.price),
+      price: Number(product.price || 0).toLocaleString("id-ID"),
+      priceMax:
+        product.priceType === "range" && product.priceMax
+          ? Number(product.priceMax).toLocaleString("id-ID")
+          : "",
+      priceMode: product.priceType === "range" ? "range" : "fixed",
       image: product.image,
       size: product.size,
       thickness: product.thickness,
@@ -109,9 +124,23 @@ export default function AdminProductsPage() {
     event.preventDefault();
 
     const priceNumber = Number(formValues.price.replace(/[^0-9]/g, ""));
+    const priceMaxNumber = Number(formValues.priceMax.replace(/[^0-9]/g, ""));
+
     if (!Number.isFinite(priceNumber) || priceNumber <= 0) {
-      setErrorMessage("Harga harus berupa angka lebih dari 0.");
+      setErrorMessage("Harga minimum harus berupa angka lebih dari 0.");
       return;
+    }
+
+    if (formValues.priceMode === "range") {
+      if (!Number.isFinite(priceMaxNumber) || priceMaxNumber <= 0) {
+        setErrorMessage("Harga maksimum harus berupa angka lebih dari 0.");
+        return;
+      }
+
+      if (priceMaxNumber <= priceNumber) {
+        setErrorMessage("Harga maksimum harus lebih besar dari harga minimum.");
+        return;
+      }
     }
 
     if (!formValues.name.trim()) {
@@ -124,6 +153,8 @@ export default function AdminProductsPage() {
         name: formValues.name.trim(),
         category: formValues.category.trim() || "Uncategorized",
         price: priceNumber,
+        priceType: formValues.priceMode,
+        priceMax: formValues.priceMode === "range" ? priceMaxNumber : null,
         rating: 0,
         reviewsCount: 0,
         size: formValues.size.trim() || "-",
@@ -166,6 +197,8 @@ export default function AdminProductsPage() {
                 name: formValues.name.trim(),
                 category: formValues.category.trim() || "Uncategorized",
                 price: priceNumber,
+                priceType: formValues.priceMode,
+                priceMax: formValues.priceMode === "range" ? priceMaxNumber : null,
                 size: formValues.size.trim() || "-",
                 thickness: formValues.thickness.trim() || "-",
                 description: formValues.description.trim(),
@@ -349,7 +382,7 @@ export default function AdminProductsPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-medium text-zinc-700">Kategori</label>
+                <label className="text-xs font-medium text-zinc-700">Jenis Kayu</label>
                 <input
                   type="text"
                   value={formValues.category}
@@ -357,22 +390,94 @@ export default function AdminProductsPage() {
                     setFormValues((prev) => ({ ...prev, category: event.target.value }))
                   }
                   className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
-                  placeholder="Contoh: Plywood, MDF"
+                  placeholder="Contoh: Plywood, MDF, Partikel Board"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-medium text-zinc-700">Harga (IDR)</label>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  value={formValues.price}
-                  onChange={(event) =>
-                    setFormValues((prev) => ({ ...prev, price: event.target.value }))
-                  }
-                  className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
-                  placeholder="Contoh: 250000"
-                />
+                <label className="text-xs font-medium text-zinc-700">Harga</label>
+
+                <div className="flex flex-wrap items-center gap-1 text-[11px] text-zinc-500">
+                  <span className="text-[11px]">Tipe harga:</span>
+                  <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 p-0.5 text-[11px]">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFormValues((prev) => ({ ...prev, priceMode: "fixed" }))
+                      }
+                      className={`rounded-full px-2.5 py-1 transition-colors ${
+                        formValues.priceMode === "fixed"
+                          ? "bg-orange-600 text-white"
+                          : "text-zinc-700 hover:bg-white"
+                      }`}
+                    >
+                      Harga tetap
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFormValues((prev) => ({ ...prev, priceMode: "range" }))
+                      }
+                      className={`rounded-full px-2.5 py-1 transition-colors ${
+                        formValues.priceMode === "range"
+                          ? "bg-orange-600 text-white"
+                          : "text-zinc-700 hover:bg-white"
+                      }`}
+                    >
+                      Range harga
+                    </button>
+                  </div>
+                </div>
+
+                {formValues.priceMode === "fixed" ? (
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={formValues.price}
+                    onChange={(event) =>
+                      setFormValues((prev) => ({
+                        ...prev,
+                        price: formatPriceInput(event.target.value),
+                      }))
+                    }
+                    className="mt-1 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="Contoh: 250000 (akan menjadi 250.000)"
+                  />
+                ) : (
+                  <div className="mt-1 grid gap-2 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={formValues.price}
+                      onChange={(event) =>
+                        setFormValues((prev) => ({
+                          ...prev,
+                          price: formatPriceInput(event.target.value),
+                        }))
+                      }
+                      className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                      placeholder="Harga minimum (mis. 250000)"
+                    />
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={formValues.priceMax}
+                      onChange={(event) =>
+                        setFormValues((prev) => ({
+                          ...prev,
+                          priceMax: formatPriceInput(event.target.value),
+                        }))
+                      }
+                      className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                      placeholder="Harga maksimum (mis. 350000)"
+                    />
+                  </div>
+                )}
+
+                <p className="mt-1 text-[11px] text-zinc-500">
+                  Angka akan otomatis diformat 20.000, 250.000, dst. Untuk material dengan banyak ukuran,
+                  gunakan mode <span className="font-semibold">Range harga</span>.
+                </p>
               </div>
 
               <div className="space-y-1">
@@ -507,7 +612,10 @@ export default function AdminProductsPage() {
                 <p className="text-xs text-zinc-500 line-clamp-2">{product.description}</p>
 
                 <div className="mt-1 text-sm font-semibold text-orange-600">
-                  {formatPrice(product.price)}
+                  {product.priceType === "range" && product.priceMax &&
+                  product.priceMax > product.price
+                    ? `${formatPrice(product.price)} - ${formatPrice(product.priceMax)}`
+                    : formatPrice(product.price)}
                 </div>
 
                 <div className="mt-3 flex items-center justify-between border-t border-zinc-100 pt-3">

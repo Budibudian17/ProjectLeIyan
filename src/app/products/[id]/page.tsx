@@ -93,6 +93,21 @@ export default function ProductDetailPage() {
 
   const effectiveProduct: Product | null = product;
 
+  const hasPriceRange =
+    effectiveProduct?.priceType === "range" &&
+    typeof effectiveProduct.priceMax === "number" &&
+    effectiveProduct.priceMax > effectiveProduct.price;
+
+  const displayPriceText = effectiveProduct
+    ? hasPriceRange
+      ? `${formatPrice(effectiveProduct.price)} - ${formatPrice(effectiveProduct.priceMax as number)}`
+      : formatPrice(effectiveProduct.price)
+    : "-";
+
+  const displayPriceCaption = hasPriceRange
+    ? "Perkiraan harga tergantung ukuran dan ketebalan"
+    : "Perkiraan harga mulai dari";
+
   const detail = effectiveProduct
     ? {
         heading: effectiveProduct.name,
@@ -108,7 +123,7 @@ export default function ProductDetailPage() {
             ? { label: "Ketebalan", value: effectiveProduct.thickness }
             : null,
           effectiveProduct.category
-            ? { label: "Kategori", value: effectiveProduct.category }
+            ? { label: "Jenis Kayu", value: effectiveProduct.category }
             : null,
         ].filter(Boolean) as { label: string; value: string }[],
       }
@@ -234,9 +249,9 @@ export default function ProductDetailPage() {
             </div>
 
             <div>
-              <p className="text-sm text-zinc-500">Perkiraan harga mulai dari</p>
+              <p className="text-sm text-zinc-500">{displayPriceCaption}</p>
               <p className="mt-1 text-3xl font-semibold tracking-tight text-[#942c2e] sm:text-4xl">
-                {effectiveProduct ? formatPrice(effectiveProduct.price) : "-"}
+                {displayPriceText}
               </p>
             </div>
 
